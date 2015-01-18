@@ -2,10 +2,10 @@
 
 
 ## Setup & Goal ( TLDR )
-1. Clone this repo and make a branch under your name.
-2. Contact Tom or Kaoru and ask for an `api_key` and to be added to this repo as a collaborator.
-3. Write a single-page CRUD interface for vehicles. ( More details below. )
-4. Push your branch up and create a PR (Pull Request) for review.
+1. Fork this repo.
+2. Contact Tom or Kaoru and ask for an `api_key`.
+3. Write a single-page CRUD (Create Read Update Delete) interface for vehicles. ( More details below. )
+4. Create a PR (Pull Request) for review.
 
 ## Api end points
 I have a [dumb server](https://github.com/KaoruDev/sureup-fe-api) on heroku to provide you with a basic CRUD API. Because Heroku spins downs dynos when not used, you may need to hit the url before you start getting responses.
@@ -63,10 +63,10 @@ Setup a single page app with a CRUD ( Create / Read / Update / Delete ) interfac
 4. A user should be able to remove vehicles from the list (via `/vehicles/:id` `method: delete`)
 
 #### Libraries:
-You are limited to [jQuery](http://jquery.com/), [underscore](http://underscorejs.org/) and [backbone](http://backbonejs.org) as we use this on our stack.
+You are limited to [jQuery](http://jquery.com/), [underscore](http://underscorejs.org/) and [backbone](http://backbonejs.org) as we use these on our stack.
 
 #### CSS:
-You have the freedom of choosing a css framework. You're free to use your imagination. Kudos on making it pretty, but definitely will not be held against you. We're more concerned with how you setup your css rather than how it looks.
+You have the freedom of choosing a css framework. You're free to use your imagination. Kudos on making it pretty, but it definitely will not be held against you if it isn't. We're more concerned with how you setup your css rather than how it looks.
 ____
 
 Questions? Concerns? Feel free to ask Kaoru!
