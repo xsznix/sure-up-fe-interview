@@ -10,7 +10,7 @@
 ## Api end points
 I have a [dumb server](https://github.com/KaoruDev/sureup-fe-api) on heroku to provide you with a basic CRUD API. Because Heroku spins downs dynos when not used, you may need to hit the url before you start getting responses.
 
-The root url is http://sureup-fe-interview.heroku.com
+The root url is http://sureup-fe-interview.herokuapp.com
 
 |  Action | Endpoint           | rest action   | parameters  | response
 | -------| ------------- |:-------------:| -----:      | -----:
