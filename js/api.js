@@ -24,9 +24,16 @@ var API = (function (API, undefined) {
 		return url + '?api_key=' + APIKEY; // APIKEY is defined in apikey.js
 	}
 
-	function httpErr (reject) {
-		return function () {
-			reject({ errors: [HTTP_ERR_STR] });
+	function makeError (reject) {
+		return function (jqXHR) {
+			if (jqXHR.responseText)
+				try {
+					reject(JSON.parse(jqXHR.responseText));
+				} catch (e) {
+					reject({ errors: [HTTP_ERR_STR] });
+				}
+			else
+				reject({ errors: [HTTP_ERR_STR] });
 		}
 	}
 
@@ -56,7 +63,7 @@ var API = (function (API, undefined) {
 		return new Promise(function (resolve, reject) {
 			$.ajax(APIURL.LIST, {
 				type: 'GET',
-				error: httpErr(reject),
+				error: makeError(reject),
 				success: function (data) {
 					resolve(data);	
 				}
@@ -69,12 +76,7 @@ var API = (function (API, undefined) {
 			$.ajax(APIURL.CREATE, {
 				type: 'POST',
 				data: makeVehicleParams(vehicle),
-				error: httpErr(reject),
-				statusCode: {
-					406: function (data) {
-						reject(data);
-					}
-				},
+				error: makeError(reject),
 				success: function (data) {
 					resolve(data);
 				}
@@ -84,15 +86,10 @@ var API = (function (API, undefined) {
 
 	API.update = function (vehicle) {
 		return new Promise(function (resolve, reject) {
-			$.ajax(APIURL.UPDATE(id), {
+			$.ajax(APIURL.UPDATE(vehicle.id), {
 				type: 'PUT',
 				data: makeVehicleParams(vehicle),
-				error: httpErr(reject),
-				statusCode: {
-					406: function (data) {
-						reject(data);
-					}
-				},
+				error: makeError(reject),
 				success: function (data) {
 					resolve(data);
 				}
@@ -104,7 +101,7 @@ var API = (function (API, undefined) {
 		return new Promise(function (resolve, reject) {
 			$.ajax(APIURL.DESTROY(id), {
 				type: 'DELETE',
-				error: httpErr(reject),
+				error: makeError(reject),
 				success: function (data) {
 					resolve(data);
 				}

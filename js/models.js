@@ -29,7 +29,7 @@
 		},
 
 		destroy: function () {
-			API.destroy(this.id);
+			return API.destroy(this.id);
 		}
 	});
 
