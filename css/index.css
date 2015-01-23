@@ -1,3 +1,5 @@
+/* GENERAL */
+
 html {
 	background: #f0f0f0;
 }
@@ -24,6 +26,8 @@ h1 {
 	box-shadow: 0px 2px 8px #ececec;
 }
 
+/* TABLE LAYOUT */
+
 table {
 	table-layout: fixed;
 
@@ -37,13 +41,11 @@ th {
 	text-align: left;
 }
 
-tbody tr {
-	position: relative;
-}
-
 tbody tr:hover td {
 	background: #fcfcfc;
 }
+
+/* TD WIDTHS */
 
 tbody td {
 	width: 181px;
@@ -69,6 +71,8 @@ tbody tr > :nth-child(5) {
 tbody tr:hover td:nth-child(5) {
 	color: #444;
 }
+
+/* CLICKABLES AND EDITABLES */
 
 tbody i.fa {
 	padding: 3px 6px;
@@ -98,14 +102,6 @@ tfoot button:hover {
 	border: 1px solid #bbb;
 }
 
-#errors {
-	color: #f65;
-
-	font-family: 'Open Sans', sans-serif;
-	font-size: 14px;
-	line-height: 110%;
-}
-
 input[type=text] {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -116,4 +112,14 @@ input[type=text] {
 
 	font-family: 'Open Sans', sans-serif;
 	font-size: 16px;
+}
+
+/* ERROR TEXT */
+
+#errors {
+	color: #f65;
+
+	font-family: 'Open Sans', sans-serif;
+	font-size: 14px;
+	line-height: 110%;
 }
