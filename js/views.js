@@ -88,6 +88,7 @@
 			}.bind(this), function (data) {
 				E.fire('error.show', data.errors);
 				this.render();
+				this.$el.find('input').eq(0).focus();
 
 				if (typeof onError === 'function')
 					onError();
