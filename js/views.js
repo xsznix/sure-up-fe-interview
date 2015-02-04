@@ -173,7 +173,7 @@
 			var view = new VehicleView({ model: vehicle, editing: !!editing });
 			this.vehicles.push(view);
 			this.$vehicles.append(view.render().el);
-			$(view.el).find('input').eq(0).focus();
+			view.$el.find('input').eq(0).focus();
 
 			this.hideError();
 		},
@@ -190,7 +190,7 @@
 
 			viewToRemove.destroyView();
 
-			$(viewToRemove.el).remove();
+			viewToRemove.$el.remove();
 
 			this.hideError();
 		},
