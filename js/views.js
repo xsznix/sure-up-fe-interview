@@ -20,10 +20,10 @@
 			this.cancelChangesBound = this.cancelChanges.bind(this);
 
 			if (this.editing)
-				E.trigger('edit.init', this);
+				E.trigger('edit:init', this);
 
-			E.on('edit.init', this.checkEditStateBound);
-			E.on('edit.escape', this.cancelChangesBound);
+			E.on('edit:init', this.checkEditStateBound);
+			E.on('edit:escape', this.cancelChangesBound);
 		},
 		render: function () {
 			var model = this.model.toJSON();
@@ -44,8 +44,8 @@
 			'keydown': 'handleKey'
 		},
 		destroyView: function () {
-			E.off('edit.init', this.checkEditStateBound);
-			E.off('edit.escape', this.cancelChangesBound);
+			E.off('edit:init', this.checkEditStateBound);
+			E.off('edit:escape', this.cancelChangesBound);
 		},
 
 		// onError: an optional callback for when the server returns an error.
@@ -57,7 +57,7 @@
 			if (!this.editing) return;
 
 			if (!preserveError)
-				E.trigger('error.hide');
+				E.trigger('error:hide');
 
 			var find = this.$el.find;
 
@@ -86,7 +86,7 @@
 				this.editing = false;
 				this.render();
 			}.bind(this), function (data) {
-				E.trigger('error.show', data.errors);
+				E.trigger('error:show', data.errors);
 				this.render();
 				this.$el.find('input').eq(0).focus();
 
@@ -107,7 +107,7 @@
 		removeSelf: function () {
 			if (!this.model.isNew())
 				this.model.destroy().then(undefined, logerr);
-			E.trigger('table.remove', this.model);
+			E.trigger('table:remove', this.model);
 		},
 		startEdit: function (ev) {
 			if (this.editing) return;
@@ -115,7 +115,7 @@
 			// Focus input after re-rendering
 			var idx = $(ev.currentTarget).index();
 			this.render();
-			E.trigger('edit.init', this); // Close other rows in edit mode
+			E.trigger('edit:init', this); // Close other rows in edit mode
 			this.$el.children().eq(idx).find('input').focus();
 		},
 		checkEditState: function (model) {
@@ -125,7 +125,7 @@
 				// the editing form the user just opened.
 				var _this = this;
 				this.commitChanges(function () {
-					E.trigger('edit.init', _this);
+					E.trigger('edit:init', _this);
 				}, true);
 			}
 		},
@@ -144,9 +144,9 @@
 		el: '#vehicleTable',
 
 		initialize: function (options) {
-			E.on('table.remove', this.remove.bind(this));
-			E.on('error.show', this.showError.bind(this));
-			E.on('error.hide', this.hideError.bind(this));
+			E.on('table:remove', this.remove.bind(this));
+			E.on('error:show', this.showError.bind(this));
+			E.on('error:hide', this.hideError.bind(this));
 
 			this.vehicles = options.vehicles.map(function (v) {
 				return new VehicleView({ model: new VehicleModel(v) });
